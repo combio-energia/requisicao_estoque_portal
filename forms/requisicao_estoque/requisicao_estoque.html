@@ -1,0 +1,72 @@
+<html>
+<head>
+	<link type="text/css" rel="stylesheet" href="/style-guide/css/fluig-style-guide.min.css" />
+	<link rel="stylesheet" type="text/css" href="/style-guide/css/fluig-style-guide-ratingstars.min.css">
+	<link rel="stylesheet" href="custom.css" />
+	<link rel="stylesheet" href="/wd_ecm_resources/resources/css/default.css" />
+
+	<script type="text/javascript" src="/webdesk/vcXMLRPC.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/jquery/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="/portal/resources/js/mustache/mustache-min.js"></script>
+	<script type="text/javascript" src="/style-guide/js/fluig-style-guide.min.js" charset="utf-8"></script>
+	<script type="text/javascript" src="/wd_ecm_resources/resources/js/functions.js"></script>
+	<script type="text/javascript" src="/wd_ecm_resources/resources/js/pdfmake.js"></script>
+	<script type="text/javascript" src="/wd_ecm_resources/resources/js/pdfmake.min.js"></script>
+	<script type="text/javascript" src="/wd_ecm_resources/resources/js/vfs_fonts.js"></script>
+	<script src="/style-guide/js/fluig-style-guide-ratingstars.min.js"></script>
+</head>
+<body>
+<div class="fluig-style-guide">
+<form name="form" role="form">
+	<div class="row fs-md-margin-bottom fs-xs-margin-horizontal">
+		<div class="col-md-12">
+			<div class="page-header fs-display-flex fs-justify-content-space-between fs-align-items-center">
+				<span>
+					<h2 class="txt-primary">
+						Cadastro de Materiais Para Controle de Estoque no Fluig
+					</h2>
+				</span>
+			</div>
+		</div>
+	</div>
+	<div class="panel panel-default" id="div_solicitacao">
+		<div class="panel-heading">
+			<h3 class="panel-title fs-display-flex fs-align-items-center">
+				<i class="flaticon flaticon-fluig icon-md fs-sm-margin-right"></i>
+				<span>Material Cadastrado</span>
+			</h3>
+		</div>
+		<div class="panel-body">
+			<div class="row">
+				<div class="col-md-2 fs-md-margin-bottom">
+					<label for="form_estab">Estabelecimento</label>
+					<input type="text" name="form_estab" id="form_estab" class="form-control" readonly/>
+				</div>
+				<div class="col-md-2 fs-md-margin-bottom">
+					<label for="form_codigo">Código</label>
+					<input type="text" name="form_codigo" id="form_codigo" class="form-control" readonly/>
+				</div>
+				<div class="col-md-6 fs-md-margin-bottom">
+					<label for="form_descricao">Descrição</label>
+					<input type="text" name="form_descricao" id="form_descricao" class="form-control text-center" readonly/>
+				</div>				
+				<!-- <div class="col-md-4 fs-md-margin-bottom">
+					<label for="form_valor">Valor UN</label>
+					<input type="text" name="form_valor" id="form_valor" class="form-control text-center" readonly/>
+				</div> -->
+				<div class="col-md-2 fs-md-margin-bottom">
+					<label for="form_quantidade">Quantidade</label>
+					<input type="text" name="form_quantidade" id="form_quantidade" class="form-control text-center" readonly/>
+				</div>
+				<!-- <div class="col-md-6 fs-md-margin-bottom">
+					<label for="form_saldo">Saldo</label>
+					<input type="text" name="form_saldo" id="form_saldo" class="form-control text-center" readonly/>
+				</div> -->
+			</div>
+		</div>
+	</div>
+</form>
+</div>
+</body>
+</html>

@@ -1,0 +1,428 @@
+:root {
+  --primary: #116533;
+  --primary-lighten: #bce2cc;
+  --font-family-theme: NunitoSans, sans-serif;
+}
+
+html, body, div, p, span, input, button, select, textarea {
+  font-family: 'Kodchasan', sans-serif !important;
+}
+
+/* .textTab {
+  font-family: 'Kodchasan', sans-serif !important;
+  font-weight: bold !important;
+  color: #116533 !important;
+} */
+
+.main {
+  font-family: var(--font-family-theme) !important;
+}
+
+.txt-right {
+  text-align: right;
+}
+
+.txt-primary {
+  color: var(--primary) !important;
+}
+
+.bg-primary {
+  background-color: var(--primary) !important;
+}
+
+.bt-primary {
+  background: var(--primary) !important;
+  color: white !important;
+  border-color: var(--primary) !important;
+}
+
+.bt-primary-outlined {
+  background: white !important;
+  color: var(--primary) !important;
+  border-color: var(--primary) !important;
+}
+
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.card-thumb {
+  height: auto !important;
+}
+
+.card:hover {
+  background-color: var(--primary-lighten) !important;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+.tooltip>.tooltip-inner {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border: 1px solid var(--primary) !important;
+}
+
+.tooltip .tooltip-arrow {
+  border: none !important
+}
+
+.formViewContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.formView {
+  width: 100%;
+  height: 100%;
+  border: 0
+}
+
+.lbl-primary {
+  background-color: var(--primary) !important;
+  color: white !important;
+  border: 1px solid var(--primary) !important;
+}
+
+.lbl-primary-lighten {
+  background-color: var(--primary-lighten) !important;
+  color: var(--primary) !important;
+  border: 1px solid var(--primary-lighten) !important;
+}
+
+.card.pointer {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card.pointer:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 20px rgba(0, 157, 183, 0.25);
+}
+
+.icon-background {
+  width: 70px !important;
+  height: 70px !important;
+  background-color: var(--primary-lighten) !important;
+  border-radius: 50% !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 2.5vh !important;
+}
+
+
+/* Estilos para abas */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.header {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    padding: 30px;
+    text-align: center;
+}
+
+.header h1 {
+    font-size: 2.5rem;
+    font-weight: 300;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.tabs {
+    display: flex;
+    background: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+}
+
+.tab {
+    flex: 1;
+    padding: 20px;
+    text-align: center;
+    cursor: pointer;
+    background: #f8f9fa;
+    color: #6c757d;
+    font-weight: 600;
+    font-size: 1.1rem;
+    border: none;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tab:hover {
+    background: #e9ecef;
+    color: #495057;
+}
+
+.tab.active {
+    background: white;
+    color: #2c3e50;
+    border-bottom: 3px solid #116533;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: #116533;
+}
+
+.tab-content {
+    display: none;
+    padding: 40px;
+    animation: fadeIn 0.3s ease-in;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-title {
+    font-size: 1.8rem;
+    color: #2c3e50;
+    margin-bottom: 30px;
+    font-weight: 300;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 25px;
+}
+
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #116533;
+    font-size: 0.95rem;
+}
+
+
+.textSpan {
+  color: #116533 !important;
+  font-weight: bold;
+}
+
+
+#btnCadastraMaterial{
+    background-color: transparent;
+    border: 2px solid #116533;
+    color: #116533;
+}
+
+#btnCadastraMaterial {
+    background-color: transparent;
+    border: 2px solid #116533;
+    color: #116533;
+}
+
+#btnCadastraMaterial:hover {
+    background-color: #116533;
+    border-color: #116533;
+    color: #fff;
+}
+
+/* Estilo para grupos de input com ícones quando focados */
+.fluig-style-guide .input-group:focus-within {
+    box-shadow: 0 0 0 0.25rem rgba(57, 148, 68, 0.25) !important;
+    border-radius: 4px;
+}
+
+.fluig-style-guide .input-group:focus-within .form-control,
+.fluig-style-guide .input-group:focus-within .input-group-addon {
+    border-color: #399444 !important;
+}
+
+/* Ajuste para os ícones */
+.fluig-style-guide .input-group:focus-within .input-group-addon {
+    background-color: #f8f9fa !important;
+    border-color: #399444 !important;
+    color: #399444 !important;
+}
+
+/* Ajuste para manter a consistência visual */
+.fluig-style-guide .input-group .form-control:focus,
+.fluig-style-guide .input-group .input-group-addon {
+    z-index: 1;
+}
+
+/* --- NOVO: estilo para campos SEM ícones --- */
+.fluig-style-guide .form-control:focus {
+    border-color: #399444 !important;
+    box-shadow: 0 0 0 0.25rem rgba(57, 148, 68, 0.25) !important;
+    border-radius: 4px;
+    outline: none; /* Remove borda azul padrão */
+}
+
+table.tabelaCombio th {
+  color: #fff !important;
+  background-color: #399444 !important;
+}
+
+.custom-file-upload {
+    width: 100%;
+    max-width: 500px; /* Ajuste conforme necessário */
+}
+
+.file-input-display {
+    display: flex;
+    border: 2px solid #116533; 
+    border-radius: 4px;
+    overflow: hidden;
+    background-color: white;
+}
+
+.file-text {
+    flex: 1;
+    padding: 10px 12px;
+    background-color: white;
+    color: #666;
+    font-size: 14px;
+    border: none;
+    display: flex;
+    align-items: center;
+}
+
+.file-button {
+    background-color: #116533;  
+    color: white !important;            
+    padding: 10px 16px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.file-button:hover {
+    background-color: #2d7a35;  
+}
+
+.btn-padrao {
+  background-color: #116533 !important;
+  color: white !important;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease;
+
+  /* Força todos a terem o mesmo tamanho */
+  width: 100%; /* Para ocupar toda a largura do col-md-4 */
+  justify-content: center; /* Centraliza o texto */
+}
+
+.btn-padrao:hover {
+  background-color: #0d4d28 !important;
+  color: white !important;
+}
+
+.btn-padrao:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(17, 101, 51, 0.3);
+}
+
+.w3-centerRei {
+  text-align: center !important
+}
+
+.btnSalvar {
+    background-color: #116533 !important;
+    color: white !important;
+    border: 2px solid #116533;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 10px; /* Espaço entre os botões */
+    transition: all 0.3s ease;
+}
+
+.btnSalvar:hover {
+    background-color: #0d4d28 !important;
+    border-color: #0d4d28;
+}
+
+/* Botão Fechar - apenas bordas verdes */
+.btnFechar {
+    background-color: transparent !important;
+    color: #116533 !important;
+    border: 2px solid #116533;
+    padding: 10px 20px;
+    font-size: 14px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btnFechar:hover {
+    background-color: #399444 !important;
+    color: white !important;
+    border-color: #399444;
+}
+
+.btnPagination {
+    background-color: transparent !important;
+    border: 3px solid #116533 !important;
+    color: #116533 !important;
+    padding: 5px 8px !important;
+    margin: 1px !important;
+    border-radius: 4px !important;
+    cursor: pointer !important;
+    font-size: 14px !important;
+    font-weight: 500 !important;
+    box-sizing: border-box !important;
+    display: inline-block !important;
+    min-height: 4px !important;
+    line-height: 1.2 !important;
+    transform: translateZ(0);
+    position: relative;
+}
+
+.btnPagination:hover {
+    background-color: #116533;
+    border-color: #116533;
+    color: #fff;
+}
+
+.btnPagination:focus,
+.btnPagination:active {
+    background-color: transparent;
+    border-color: #116533;
+    color: #116533;
+    box-shadow: 0 0 0 0.2rem rgba(28, 54, 31, 0.25);
+    outline: none;
+}
+
+.btnPagination.active {
+    background-color: #116533 !important;
+    color: #fff !important;
+    border: 3px solid #116533 !important;
+}

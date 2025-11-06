@@ -6,7 +6,7 @@ var MyWidget = SuperWidget.extend({
     //método iniciado quando a widget é carregada
     init: function() {
 
-        console.log('Deploy: 9');
+        console.log('Deploy: 3');
 
         camposAutocomplet();
 

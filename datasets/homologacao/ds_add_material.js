@@ -42,7 +42,7 @@ function getDados(codigoEstab, codigo, descricao, quantidade, valor, saldo) {
 
         var clientService = fluigAPI.getAuthorizeClientService();
         var empresa = getValue("WKCompany");
-        var cardindex = '116596'; // teste
+        var cardindex = '883044'; // teste
         // var cardindex = '754260'; // producao
 
         var data = {
@@ -75,7 +75,7 @@ function getDados(codigoEstab, codigo, descricao, quantidade, valor, saldo) {
 
         var response = clientService.invoke(JSON.stringify(data));
 
-        // log.info("### Request json ds_add_material " + JSON.stringify(data));
+        log.info("### Request json ds_add_material " + JSON.stringify(data));
 
         if (response == null || response.getResult() == null || response.getResult().isEmpty()) {
             dataset.addColumn("return");

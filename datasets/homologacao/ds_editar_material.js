@@ -5,8 +5,8 @@ function createDataset(fields, constraints, sortFields) {
     var fieldsConst = retorno;
 	var dsRetorno = getDados(
         fieldsConst.cardId, 
-        fieldsConst.codigo, 
         fieldsConst.estabelecimento, 
+        fieldsConst.codigo, 
         fieldsConst.descricao, 
         fieldsConst.quantidade 
        
@@ -40,12 +40,19 @@ function transformConstraintInFields(constraints) {
 }
 
 function getDados(cardId, estab, codigo, descricao, quantidade) {
+
+    console.log("### cardId: " + cardId);
+    console.log("### estab: " + estab);
+    console.log("### codigo: " + codigo);
+    console.log("### descricao: " + descricao);
+    console.log("### quantidade: " + quantidade);
+
     try {
         var dataset = DatasetBuilder.newDataset();
 
         var clientService = fluigAPI.getAuthorizeClientService();
         var empresa = getValue("WKCompany");
-        var cardindex = '116596'; // teste
+        var cardindex = '883044'; // teste
         // var cardindex = '754260'; // producao
 
         var data = {
@@ -83,13 +90,13 @@ function getDados(cardId, estab, codigo, descricao, quantidade) {
 
         if (response == null || response.getResult() == null || response.getResult().isEmpty()) {
             dataset.addColumn("return");
-            dataset.addRow(["#### Falha ao consultar ds_add_material"]);
+            dataset.addRow(["#### Falha ao consultar ds_editar_material:"]);
         } else {
 
             var resultStr = response.getResult();
             var result = JSON.parse(resultStr);
 
-            log.info('### Response ds_add_material: ' + JSON.stringify(result))
+            log.info('### Response ds_editar_material: ' + JSON.stringify(result))
 
            if (result.values && result.values.length > 0) {
                 dataset.addColumn("cardId");

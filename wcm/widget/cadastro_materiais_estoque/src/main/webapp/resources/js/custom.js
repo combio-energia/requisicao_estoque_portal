@@ -717,92 +717,103 @@ function getFirstTagDescription(ac){
 }
 
 function addItens() {
-  const $tr = $('#id01').data('row');
-  const origem = $('#id01').data('origem');
-  if (!$tr || !$tr.length){
-    FLUIGC.toast({ title:'Erro: ', message:'Linha não encontrada para edição.', type:'danger' });
-    return;
-  }
 
-  // Estabelecimento -> autocompletex3
-  let estab = '';
-  if (typeof autocompletex3 !== 'undefined') estab = getFirstTagDescription(autocompletex3);
-  if (!estab && document.getElementById('m_estabelecimento')) estab = ($('#m_estabelecimento').val() || '').trim();
+    const $tr = $('#id01').data('row');
+    const origem = $('#id01').data('origem');
+    if (!$tr || !$tr.length){
+      FLUIGC.toast({ title:'Erro: ', message:'Linha não encontrada para edição.', type:'danger' });
+      return;
+    }
 
-  // Código/Descrição -> autocompletex1
-  let codDesc = '';
-  if (typeof autocompletex1 !== 'undefined') codDesc = getFirstTagDescription(autocompletex1);
-  if (!codDesc && document.getElementById('m_codigo')) codDesc = ($('#m_codigo').val() || '').trim();
+    // Estabelecimento -> autocompletex3
+    let estab = '';
+    if (typeof autocompletex3 !== 'undefined') estab = getFirstTagDescription(autocompletex3);
+    if (!estab && document.getElementById('m_estabelecimento')) estab = ($('#m_estabelecimento').val() || '').trim();
 
-  // separa "CODIGO | DESCRICAO"
-  let codigo = '', descricao = '';
-  if (codDesc){
-    const p = codDesc.split('|');
-    codigo = (p[0] || '').trim();
-    descricao = (p[1] || '').trim();
-    if (!descricao && codigo && codigo.indexOf(' ') > -1) { descricao = codigo; codigo = ''; }
-  }
+    // Código/Descrição -> autocompletex1
+    let codDesc = '';
+    if (typeof autocompletex1 !== 'undefined') codDesc = getFirstTagDescription(autocompletex1);
+    if (!codDesc && document.getElementById('m_codigo')) codDesc = ($('#m_codigo').val() || '').trim();
 
-  const quantidade = ($('#m_quantidade').val() || '').replace(/\D/g,'').trim();
+    // separa "CODIGO | DESCRICAO"
+    let codigo = '', descricao = '';
+    if (codDesc){
+      const p = codDesc.split('|');
+      codigo = (p[0] || '').trim();
+      descricao = (p[1] || '').trim();
+      if (!descricao && codigo && codigo.indexOf(' ') > -1) { descricao = codigo; codigo = ''; }
+    }
 
-  if (!estab){
-    FLUIGC.toast({ title:'Atenção: ', message:'Informe o Estabelecimento.', type:'warning' });
-    return;
-  }
-  if (!codigo || !descricao){
-    FLUIGC.toast({ title:'Atenção: ', message:'Informe Código e Descrição.', type:'warning' });
-    return;
-  }
+    // let descrEstab = "";
 
-  const cardId = ($tr.find('.cardId').val() || '').trim();
-  if (!cardId){
-    FLUIGC.toast({ title:'Erro: ', message:'cardId não encontrado na linha.', type:'danger' });
-    return;
-  }
+    if(estab){
+      const c = estab.split(' | ');
+      estab = (c[0] || '').trim();
+      // descrEstab = (c[1] || '').trim();
+    }
 
-  const loading = FLUIGC.loading(window, { textMessage:'Atualizando cadastro no GED...' });
-  loading.show();
+    const quantidade = ($('#m_quantidade').val() || '').replace(/\D/g,'').trim();
 
-  try {
-    var c1 = DatasetFactory.createConstraint('cardId',    cardId,    cardId,    ConstraintType.MUST);
-    var c2 = DatasetFactory.createConstraint('estab',     estab,     estab,     ConstraintType.MUST);
-    var c3 = DatasetFactory.createConstraint('codigo',    codigo,    codigo,    ConstraintType.MUST);
-    var c4 = DatasetFactory.createConstraint('descricao', descricao, descricao, ConstraintType.MUST);
-    var c5 = DatasetFactory.createConstraint('quantidade',quantidade,quantidade,ConstraintType.MUST);
-    var ds = DatasetFactory.getDataset('ds_editar_material', null, [c1,c2,c3,c4,c5], null);
-    var r  = (ds && ds.values && ds.values[0]) ? ds.values[0] : null;
+    if (!estab){
+      FLUIGC.toast({ title:'Atenção: ', message:'Informe o Estabelecimento.', type:'warning' });
+      return;
+    }
+    if (!codigo || !descricao){
+      FLUIGC.toast({ title:'Atenção: ', message:'Informe Código e Descrição.', type:'warning' });
+      return;
+    }
 
-    var cls = (origem === 'cadastro') ? {
-      estab: '.estabTabelaCadastro',
-      codigo: '.codigoTabelaCadastro',
-      descri: '.descrTabelaCadastro',
-      qtd: '.quantidadeTabelaCadastro'
-    } : {
-      estab: '.estabTabelaConsulta',
-      codigo: '.codigoTabelaConsulta',
-      descri: '.descrTabelaConsulta',
-      qtd: '.quantidadeTabelaConsulta'
-    };
+    const cardId = ($tr.find('.cardId').val() || '').trim();
+    if (!cardId){
+      FLUIGC.toast({ title:'Erro: ', message:'cardId não encontrado na linha.', type:'danger' });
+      return;
+    }
 
-    var vEstab = (r && (r.estab      || r.ESTAB      || r.estabelecimento || r.ESTABELECIMENTO)) || estab;
-    var vCod   = (r && (r.codigo     || r.CODIGO))     || codigo;
-    var vDesc  = (r && (r.descricao  || r.DESCRICAO))  || descricao;
-    var vQtd   = (r && (r.quantidade || r.QUANTIDADE)) || quantidade;
+    const loading = FLUIGC.loading(window, { textMessage:'Atualizando cadastro no GED...' });
+    loading.show();
 
-    $tr.find(cls.estab).val(vEstab);
-    $tr.find(cls.codigo).val(vCod);
-    $tr.find(cls.descri).val(vDesc);
-    $tr.find(cls.qtd).val(vQtd);
+    console.log('Atualizando material no GED...', { cardId, estab, codigo, descricao, quantidade, origem });
 
-    FLUIGC.toast({ title:'Sucesso: ', message:'Material atualizado no GED e na tabela (cardId '+cardId+').', type:'success' });
-    abreFecha('', 'id01');
+    try {
+      var c1 = DatasetFactory.createConstraint('cardId',    cardId,    cardId,    ConstraintType.MUST);
+      var c2 = DatasetFactory.createConstraint('estabelecimento',     estab,     estab,     ConstraintType.MUST);
+      var c3 = DatasetFactory.createConstraint('codigo',    codigo,    codigo,    ConstraintType.MUST);
+      var c4 = DatasetFactory.createConstraint('descricao', descricao, descricao, ConstraintType.MUST);
+      var c5 = DatasetFactory.createConstraint('quantidade',quantidade,quantidade,ConstraintType.MUST);
+      var ds = DatasetFactory.getDataset('ds_editar_material', null, [c1,c2,c3,c4,c5], null);
+      var r  = (ds && ds.values && ds.values[0]) ? ds.values[0] : null;
 
-  } catch (e){
-    console.error('Erro ao atualizar GED:', e);
-    FLUIGC.toast({ title:'Erro: ', message:'Falha ao atualizar cadastro no GED.', type:'danger' });
-  } finally {
-    loading.hide();
-  }
+      var cls = (origem === 'cadastro') ? {
+        estab: '.estabTabelaCadastro',
+        codigo: '.codigoTabelaCadastro',
+        descri: '.descrTabelaCadastro',
+        qtd: '.quantidadeTabelaCadastro'
+      } : {
+        estab: '.estabTabelaConsulta',
+        codigo: '.codigoTabelaConsulta',
+        descri: '.descrTabelaConsulta',
+        qtd: '.quantidadeTabelaConsulta'
+      };
+
+      var vEstab = (r && (r.estab      || r.ESTAB      || r.estabelecimento || r.ESTABELECIMENTO)) || estab;
+      var vCod   = (r && (r.codigo     || r.CODIGO))     || codigo;
+      var vDesc  = (r && (r.descricao  || r.DESCRICAO))  || descricao;
+      var vQtd   = (r && (r.quantidade || r.QUANTIDADE)) || quantidade;
+
+      $tr.find(cls.estab).val(vEstab);
+      $tr.find(cls.codigo).val(vCod);
+      $tr.find(cls.descri).val(vDesc);
+      $tr.find(cls.qtd).val(vQtd);
+
+      FLUIGC.toast({ title:'Sucesso: ', message:'Material atualizado no GED e na tabela (cardId '+cardId+').', type:'success' });
+      abreFecha('', 'id01');
+
+    } catch (e){
+      console.error('Erro ao atualizar GED:', e);
+      FLUIGC.toast({ title:'Erro: ', message:'Falha ao atualizar cadastro no GED.', type:'danger' });
+    } finally {
+      loading.hide();
+    }
 }
 
 // Helpers (use os seus se já tiver)

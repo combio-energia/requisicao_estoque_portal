@@ -33,7 +33,7 @@ function getDados(cardId) {
 
         var clientService = fluigAPI.getAuthorizeClientService();
         var empresa = getValue("WKCompany");
-        var cardindex = '116596'; // teste
+        var cardindex = '883044'; // teste
         // var cardindex = '754260'; // producao
        
         var data = {
@@ -51,7 +51,7 @@ function getDados(cardId) {
 
         if (response == null || response.getResult() == null || response.getResult().isEmpty()) {
             dataset.addColumn("return");
-            dataset.addRow(["#### Falha ao consultar ds_del_placa"]);
+            dataset.addRow(["#### Falha ao consultar ds_del_material"]);
         } else {
 
              dataset.addColumn("return");

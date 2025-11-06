@@ -41,7 +41,7 @@ function getDados(estab, codigo, descricao, quantidade) {
 
         var clientService = fluigAPI.getAuthorizeClientService();
         var empresa = getValue("WKCompany");
-        var cardindex = '116596'; // teste
+        var cardindex = '883044'; // teste
         // var cardindex = '754260'; // producao
 
         var filtros = [];
@@ -83,7 +83,7 @@ function getDados(estab, codigo, descricao, quantidade) {
 
         if (response == null || response.getResult() == null || response.getResult().isEmpty()) {
             dataset.addColumn("return");
-            dataset.addRow(["#### Falha ao consultar ds_add_material"]);
+            dataset.addRow(["#### Falha ao consultar ds_get_material"]);
         } else {
 
             var resultStr = response.getResult();

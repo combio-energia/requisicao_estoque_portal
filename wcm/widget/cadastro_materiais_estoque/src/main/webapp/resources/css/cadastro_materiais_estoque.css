@@ -282,43 +282,51 @@ table.tabelaCombio th {
   background-color: #399444 !important;
 }
 
-.custom-file-upload {
-    width: 100%;
-    max-width: 500px; /* Ajuste conforme necessário */
+/* carrega tabela de dados*/
+.custom-file-upload { width: 100%; max-width: none; }
+
+@media (min-width: 992px) {
+  .custom-file-upload { max-width: 720px; } /* opcional */
 }
 
 .file-input-display {
-    display: flex;
-    border: 2px solid #116533; 
-    border-radius: 4px;
-    overflow: hidden;
-    background-color: white;
+  display: flex;
+  width: 100%;
+  border: 2px solid #116533;
+  border-radius: 4px;
+  overflow: hidden;
+  background-color: #fff;
+  align-items: center;
 }
 
 .file-text {
-    flex: 1;
-    padding: 10px 12px;
-    background-color: white;
-    color: #666;
-    font-size: 14px;
-    border: none;
-    display: flex;
-    align-items: center;
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 10px 12px;
+  color: #444;
+  font-size: 14px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .file-button {
-    background-color: #116533;  
-    color: white !important;            
-    padding: 10px 16px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    white-space: nowrap;
+  flex: 0 0 auto;
+  background-color: #116533;
+  color: #fff !important;
+  padding: 10px 16px;
+  border: 0;
+  font-size: 14px;
+  cursor: pointer;
+  white-space: nowrap;
 }
 
-.file-button:hover {
-    background-color: #2d7a35;  
-}
+.file-button:hover { background-color: #2d7a35; }
+
+/* Neutraliza centralização que vem do container */
+#divUpload .custom-file-upload,
+#divUpload .file-input-display { text-align: initial; }
+
 
 .btn-padrao {
   background-color: #116533 !important;
@@ -426,3 +434,162 @@ table.tabelaCombio th {
     color: #fff !important;
     border: 3px solid #116533 !important;
 }
+
+/* Otimização da tabela para notebooks */
+/* Estilização para cabeçalhos da tabela */
+.dados-tabelas {
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    letter-spacing: 0.3px;
+    text-transform: uppercase;
+}
+
+/* Estilização para dados do corpo das tabelas - APLICADO ÀS 3 TABELAS */
+#tabelaCadastro tbody td,
+#tabelaConsulta tbody td,
+#tabelaPlanilha tbody td {
+    font-weight: 600 !important;
+    color: rgba(44, 62, 80, 0.8) !important; /* Cinza escuro com transparência */
+    font-size: 0.9rem;
+}
+
+/* Redução da altura das linhas - APLICADO ÀS 3 TABELAS */
+#tabelaCadastro tbody tr,
+#tabelaConsulta tbody tr,
+#tabelaPlanilha tbody tr {
+    height: 45px;
+}
+
+#tabelaCadastro th,
+#tabelaCadastro td,
+#tabelaConsulta th,
+#tabelaConsulta td,
+#tabelaPlanilha th,
+#tabelaPlanilha td {
+    padding: 8px 12px !important;
+    line-height: 1.3;
+}
+
+/* Hover mais sutil nas linhas - APLICADO ÀS 3 TABELAS */
+#tabelaCadastro tbody tr:hover td,
+#tabelaConsulta tbody tr:hover td,
+#tabelaPlanilha tbody tr:hover td {
+    color: rgba(17, 101, 51, 0.9) !important;
+    font-weight: 600 !important;
+    background-color: rgba(188, 226, 204, 0.3) !important;
+}
+
+/* Ajuste específico para a coluna de ação (botões) - APLICADO ÀS 3 TABELAS */
+#tabelaCadastro tbody td:last-child,
+#tabelaConsulta tbody td:last-child,
+#tabelaPlanilha tbody td:last-child {
+    padding: 6px 12px !important;
+}
+
+/* Otimização das tabelas para notebooks - APLICADO ÀS 3 TABELAS */
+#tabelaCadastro,
+#tabelaConsulta,
+#tabelaPlanilha {
+    table-layout: fixed;
+    width: 100%;
+    font-size: 0.9rem;
+}
+
+#tabelaCadastro th,
+#tabelaCadastro td,
+#tabelaConsulta th,
+#tabelaConsulta td,
+#tabelaPlanilha th,
+#tabelaPlanilha td {
+    vertical-align: middle;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* Permite quebra de linha apenas na descrição (ajuste o nth-child conforme necessário) */
+#tabelaCadastro td:nth-child(6),
+#tabelaConsulta td:nth-child(6),
+#tabelaPlanilha td:nth-child(6) {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+/* Responsividade para telas menores - APLICADO ÀS 3 TABELAS */
+@media (max-width: 1366px) {
+    #tabelaCadastro,
+    #tabelaConsulta,
+    #tabelaPlanilha {
+        font-size: 0.85rem;
+    }
+    
+    #tabelaCadastro tbody tr,
+    #tabelaConsulta tbody tr,
+    #tabelaPlanilha tbody tr {
+        height: 40px;
+    }
+    
+    #tabelaCadastro th,
+    #tabelaCadastro td,
+    #tabelaConsulta th,
+    #tabelaConsulta td,
+    #tabelaPlanilha th,
+    #tabelaPlanilha td {
+        padding: 6px 10px !important;
+    }
+}
+
+/* Tooltip para células com overflow - APLICADO ÀS 3 TABELAS */
+#tabelaCadastro td[title],
+#tabelaConsulta td[title],
+#tabelaPlanilha td[title] {
+    cursor: help;
+}
+
+/* 
+.pagination-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+
+#export-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+*/
+
+.btnExport {
+  background-color: #116533 !important;
+  border: 2px solid #116533 !important;
+  color: #ffffff !important; /* texto branco fixo */
+  padding: 6px 16px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
+}
+
+.btnExport:hover {
+  background-color: #0d4d26 !important;
+  border-color: #0d4d26 !important;
+  color: #ffffff !important; /* mantém branco no hover */
+}
+
+.btnExport:focus,
+.btnExport:active {
+  background-color: #116533 !important;
+  border-color: #116533 !important;
+  color: #ffffff !important; /* mantém branco no foco/ativo */
+  box-shadow: 0 0 0 0.2rem rgba(28, 54, 31, 0.25) !important;
+  outline: none !important;
+}
+
+
+
+

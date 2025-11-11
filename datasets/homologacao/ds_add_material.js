@@ -7,7 +7,9 @@ function createDataset(fields, constraints, sortFields) {
         fieldsConst.estabelecimento, 
         fieldsConst.codigo, 
         fieldsConst.descricao, 
-        fieldsConst.quantidade
+        fieldsConst.quantidade,
+        fieldsConst.localizacao, 
+        fieldsConst.narrativa
         
     );
 
@@ -22,7 +24,9 @@ function transformConstraintInFields(constraints) {
         "estabelecimento": "",	
         "codigo": "",	
         "descricao" : "",
-		"quantidade": ""
+		"quantidade": "",
+        "localizacao": "",
+        "narrativa": ""
 	};
 
     if (constraints != null) {
@@ -36,7 +40,7 @@ function transformConstraintInFields(constraints) {
     return fields;
 }
 
-function getDados(codigoEstab, codigo, descricao, quantidade, valor, saldo) {
+function getDados(codigoEstab, codigo, descricao, quantidade, localizacao, narrativa) {
     try {
         var dataset = DatasetBuilder.newDataset();
 
@@ -68,6 +72,14 @@ function getDados(codigoEstab, codigo, descricao, quantidade, valor, saldo) {
                     {
                         "fieldId": "form_quantidade",
                         "value": "" + quantidade
+                    },
+                    {
+                        "fieldId": "form_localizacao",
+                        "value": "" + localizacao
+                    },
+                    {
+                        "fieldId": "form_narrativa",
+                        "value": "" + narrativa
                     }
                 ]
             }
@@ -93,18 +105,24 @@ function getDados(codigoEstab, codigo, descricao, quantidade, valor, saldo) {
                 dataset.addColumn("codigo");
                 dataset.addColumn("descricao");
                 dataset.addColumn("quantidade");
+                dataset.addColumn("localizacao");
+                dataset.addColumn("narrativa");
 
                 var form_estab = getValueByField(result.values, "form_estab");
                 var form_codigo = getValueByField(result.values, "form_codigo");
                 var form_descricao = getValueByField(result.values, "form_descricao");
                 var form_quantidade = getValueByField(result.values, "form_quantidade");
+                var form_localizacao = getValueByField(result.values, "form_localizacao");
+                var form_narrativa = getValueByField(result.values, "form_narrativa");
                 
                 dataset.addRow([
                     result.cardId, 
                     form_estab,
                     form_codigo, 
                     form_descricao, 
-                    form_quantidade
+                    form_quantidade,
+                    form_localizacao,
+                    form_narrativa
                 ]);
             }
         }

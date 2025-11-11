@@ -6,7 +6,7 @@ var MyWidget = SuperWidget.extend({
     //método iniciado quando a widget é carregada
     init: function() {
 
-        console.log('Deploy: 3');
+        console.log('Deploy: 8');
 
         camposAutocomplet();
 
@@ -76,9 +76,11 @@ var MyWidget = SuperWidget.extend({
             var codigo = $('#codigo').val();
             var descricao = $('#descricao').val();
             var quantidade = $('#quantidade').val();
+            var localizacao = $('#localizacao').val();
+            var narrativa = $('#narrativa_unico').val();
             
             $('#divTabCadastro').removeClass('hide');
-            var resultado = cadastraMaterial('tabelaCadastro',estab, codigo, descricao, quantidade);
+            var resultado = cadastraMaterial('tabelaCadastro',estab, codigo, descricao, quantidade, localizacao, narrativa);
             console.log('Resultado do cadastro: ', resultado);
 
             autocompletex2.removeAll();
@@ -86,6 +88,8 @@ var MyWidget = SuperWidget.extend({
             $('#cod_estab').val("");
             $('#descricao').val("");
             $('#quantidade').val("");
+            $('#localizacao').val("");
+            $('#narrativa_unico').val("");
             
 
             loading.hide();
@@ -114,6 +118,16 @@ var MyWidget = SuperWidget.extend({
             uploadPlanilha(file);
 
             loading.hide();
+        });
+
+        $(".maiuscula").keyup(function() {
+            this.value = this.value.toUpperCase();
+        });
+
+        $(document).on('change', '#planilha', function () {
+            var fileName = (this.files && this.files[0] && this.files[0].name)
+                            || ($(this).val().split('\\').pop() || 'Nenhum arquivo escolhido');
+            $('#file-text').text(fileName).attr('title', fileName);
         });
         
     },

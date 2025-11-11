@@ -9,7 +9,7 @@
       <div class="bg-primary fs-xs-padding-top fs-md-padding-bottom">
         <h1 class="text-center">Cadastro de Materiais Para Controle de Estoque no Fluig</h1>
         <h4 id="subtitulo_${instanceId}"></h4>
-        <span class="label label-success fs-text-xs">Versão 1.00</span>
+        <span class="label label-success fs-text-xs">Versão 20.00</span>
       </div>
     </div>
     <div id="id01" class="w3-modal">
@@ -21,7 +21,7 @@
             </header><br>
             <div class="w3-container">				
                 <div class="row">
-                    <div class="form-group col-md-4">
+                    <div class="form-group col-md-2">
                         <label class="control-label" for="m_estabelecimento">Estabelecimento</label>
                         <input class="form-control m_estabelecimento" type="text" name="m_estabelecimento" id="m_estabelecimento"/>
                     </div>
@@ -32,7 +32,15 @@
                     <div class="form-group col-md-2">
                         <label class="control-label" for="m_quantidade">Quantidade</label>
                         <input class="form-control m_quantidade" type="text" name="m_quantidade" id="m_quantidade"/>						                      	 
+                    </div>
+                    <div class="form-group col-md-2">
+                        <label class="control-label" for="m_localizacao">Localização</label>
+                        <input class="form-control m_localizacao" type="text" name="m_localizacao" id="m_localizacao"/>						                      	 
                     </div>	
+                    <div class="form-group col-md-12">
+                        <label class="control-label" for="m_narrativa">Narrativa</label>
+                        <textarea class="form-control maiuscula" rows="3" id="m_narrativa" name="m_narrativa"></textarea>					                      	 
+                    </div>		
                 </div>
                 <div class="row">
                     <div class="col-md-12" style="text-align: center; margin-top: 20px; margin-bottom: 20px;">
@@ -52,7 +60,7 @@
     <div id="cadastro-unico" class="tab-content">
         <form id="cadastroForm">
             <div class="row">
-                <div class="form-group col-md-3">
+                <div class="form-group col-md-2">
                     <label class="control-label" for="estabelecimento">Estabelecimento</label>
                     <input class="form-control estabelecimento" type="text" name="estabelecimento" id="estabelecimento"/>
                     <input type="hidden" id="cod_estab" name="cod_estab"/>
@@ -63,10 +71,18 @@
                     <input type="hidden" id="codigo" name="codigo"/>
                     <input type="hidden" name="descricao" id="descricao"/>
                 </div>
-                <div class="form-group col-md-2">
+                <div class="form-group col-md-1">
                     <label class="control-label" for="quantidade">Quantidade</label>
                     <input class="form-control quantidade" type="number" name="quantidade" id="quantidade"/>						                      	 
-                </div>             
+                </div> 
+                <div class="form-group col-md-2">
+                    <label class="control-label" for="localizacao">Localização</label>
+                    <input class="form-control localizacao maiuscula" type="text" name="localizacao" id="localizacao"/>						                      	 
+                </div> 
+                <div class="form-group col-md-12">
+                    <label class="control-label" for="narrativa_unico">Narrativa</label>
+                    <textarea class="form-control" rows="3" id="narrativa_unico" name="narrativa_unico maiuscula"></textarea>
+                </div>            
             </div>
             <div class="row">
                 <div class="form-group col-md-offset-5 col-md-3">
@@ -79,11 +95,13 @@
                 <table tablename="cadastro" id="tabelaCadastro" class="tabelaCombio table table-bordered table-hover">
                     <thead>
                         <tr class="tableHeadRow">
-                            <th class="col-md-2">ESTABELECIMENTO</th>
-                            <th class="col-md-2 idTh">CÓDIGO</th>
-                            <th class="col-md-3">DESCRIÇÃO</th>
-                            <th class="col-md-1">QUANTIDADE</th>
-                            <th class="col-md-2 text-center w3-centerRei remove">AÇÃO</th>
+                            <th style="width: 8%;">Estabelecimento</th>
+                            <th class="idTh" style="width: 10%;">Código</th>
+                            <th style="width: 24%;">Descrição</th>
+                            <th style="width: 8%;">Quantidade</th>
+                            <th style="width: 8%;">Localização</th>
+                            <th style="width: 30%;">Narrativa</th>
+                            <th class="w3-centerRei remove" style="width: 12%;">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -116,12 +134,14 @@
             <div class="row hide" id="divTabPlanilha">
                 <table tablename="tabPlanilha" id="tabelaPlanilha" class="tabelaCombio table table-bordered table-hover">
                     <thead>
-                        <tr class="tableHeadRow">
-                            <th class="col-md-2">ESTABELECIMENTO</th>
-                            <th class="col-md-2 idTh">CÓDIGO</th>
-                            <th class="col-md-3">DESCRIÇÃO</th>
-                            <th class="col-md-1">QUANTIDADE</th>
-                            <th class="col-md-2 text-center w3-centerRei remove">AÇÃO</th>
+                       <tr class="tableHeadRow">
+                            <th style="width: 8%;">Estabelecimento</th>
+                            <th class="idTh" style="width: 10%;">Código</th>
+                            <th style="width: 24%;">Descrição</th>
+                            <th style="width: 8%;">Quantidade</th>
+                            <th style="width: 8%;">Localização</th>
+                            <th style="width: 30%;">Narrativa</th>
+                            <th class="w3-centerRei remove" style="width: 12%;">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -157,16 +177,21 @@
                 <table tablename="consulta" id="tabelaConsulta" class="tabelaCombio table table-bordered table-hover">
                     <thead>
                         <tr class="tableHeadRow">
-                            <th class="col-md-2">ESTABELECIMENTO</th>
-                            <th class="col-md-2 idTh">CÓDIGO</th>
-                            <th class="col-md-3">DESCRIÇÃO</th>
-                            <th class="col-md-1">QUANTIDADE</th>
-                            <th class="col-md-2 text-center w3-centerRei remove">AÇÃO</th>
+                            <th style="width: 8%;">Estabelecimento</th>
+                            <th class="idTh" style="width: 10%;">Código</th>
+                            <th style="width: 24%;">Descrição</th>
+                            <th style="width: 8%;">Quantidade</th>
+                            <th style="width: 8%;">Localização</th>
+                            <th style="width: 30%;">Narrativa</th>
+                            <th class="w3-centerRei remove" style="width: 12%;">Ação</th>
                         </tr>
                     </thead>
                     <tbody>
                     </tbody>
                 </table>
+                <div id="pagination-container2">
+                    <div id="pagination2" class="mt-2"></div>
+                </div>
             </div>
         </form>      
     </div>
